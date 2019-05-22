@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    <link rel="stylesheet" href="./site.css">
+    
+    //script(src='https://unpkg.com/axios/dist/axios.min.js')
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    script(src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js")
+    script(type='text/javascript' src=`/script.js`)
+    title kinostrelka
+  body(onload='getFilms(1)')
+    div(class="header")
+      
+      if user.type != 'anon'
+        nav(class='navbar navbar-expand-lg ')
+          img(src=`${user.photo}` class="avatar")
+          a(class='nav-link disabled') #{user.first_name}
+          a(class='nav-link active' href='/auth/logout')
+            | выйти
+          div(class="form-inline")
+            input#search(class="form-control mr-sm-2" placeholder="название фильма" aria-label="название фильма" aria-describedby="inputGroup-sizing-sm" name='search' type='text')
+            button( class="btn btn-outline-secondary" onclick='searchFilm()')
+              | найти   
+      else
+        nav(class='navbar navbar-expand-lg')
+          a(class='nav-link active' href = '/auth/vk')
+            | войти
+          div(class="form-inline")
+            input#search(class="form-control mr-sm-2" placeholder="название фильма" aria-label="название фильма" aria-describedby="inputGroup-sizing-sm" name='search' type='text')
+            button( class="btn btn-outline-secondary" onclick='searchFilm()')
+              | найти
+          
+    if user.type == 'admin'
+      form(class="form-control" action='/films/', method='POST', enctype='multipart/form-data')
+        include filmForm.pug
+        input(type='submit')
+
+    br
+    #films(style="margin-left: 20%; margin-right: 20%")
+    #pagination
+    #test

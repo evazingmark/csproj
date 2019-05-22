@@ -1,0 +1,39 @@
+/* body{
+    background: #444444;
+    margin: 0;
+}
+
+.header {
+    position: fixed;
+    height: 7%;
+    width: 100%;
+    background: #222222;
+    margin: 0 0;
+}
+
+.user-info {
+    position: absolute;
+    width: 25%;;
+}
+
+.user-info .username {
+    font-size: 22px;
+    font-weight: bold;
+    color: #aaaaaa;
+    position: relative;
+    margin: 0.1% 0 0 0;
+} */
+
+ .avatar {
+    border: solid 1px transparent;
+    border-radius: 50%;
+    height: 90%;
+    margin: 0.2% 0 0 0.2%;
+    position: relative;
+}
+
+/* .search {
+    position: relative;
+    margin: auto;
+    width: 20%;
+} */

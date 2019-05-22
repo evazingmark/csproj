@@ -1,0 +1,115 @@
+
+<!DOCTYPE html>
+html(lang='en')
+    head
+        meta(charset='UTF-8')
+        script(src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js")
+        script(src="https://unpkg.com/axios/dist/axios.min.js")
+        script(type="text/javascript" src=`/film.js`)
+
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+        
+
+    body(onload='getComments()')
+
+    if user.type != 'anon'
+        nav(class='navbar navbar-expand-lg ')
+          img(src=`${user.photo}` style="border: solid 1px transparent;border-radius: 50%;height: 90%;margin: 0.2% 0 0 0.2%;position: relative;")
+          a(class='nav-link disabled') #{user.first_name}
+          a(class='nav-link active' href='/auth/logout')
+            | выйти  
+    else
+        nav(class='navbar navbar-expand-lg')
+          a(class='nav-link active' href = '/auth/vk')
+            | войти
+
+    if user.type == 'admin'
+        div(class="form-control")
+            input#filmId(name='filmId', type='hidden' value=`${film.id}`)
+            | ссылка
+            br
+            input#link(name='link', type='text')
+            br
+            | текст на превью
+            br
+            input#preview_text(name='preview_text', type='text')
+            br
+            br      
+            button( class="btn btn-outline-secondary" onclick='addVideo()')
+              | добавить
+    else
+        input#filmId(name='filmId', type='hidden' value=`${film.id}`) 
+    
+    h1#filmName(class="display-4") #{film.name}
+    hr
+    
+    #videoPlace(style="margin-left: 10%; margin-right: auto")
+    if videos.length > 0
+        each video in videos
+            div(style="margin-left: 10%; margin-right: auto")
+                iframe(width="640" height="360"  src=`${video.link}` allowfullscreen)
+                br
+                small #{video.preview_text}
+            br
+    else
+        p трейлеров нет
+
+    if user.type != 'anon'
+        div(style="margin-left: 10%; margin-right: auto")
+            input#userId(name='userId', type='hidden' value=`${user.dbId}`) 
+            textarea#commArea( class="form-control" style="resize: both; width: 640px; overflow: auto;" name="commArea", rows="4")
+            br
+            button(class="btn btn-outline-primary" onclick='sendComment()')
+                | отправить
+    br
+    br
+    #comments
+//- |название 
+//- br
+//- input#name(name='name', type='text' value=`${film.name}`)
+//- br
+//- |жанр
+//- br
+//- input#genre(name='genre', type='text' value=`${film.genre}`)
+//- br
+//- |страна
+//- br
+//- input#country(name='country', type='text' value=`${film.country}`)
+//- br
+//- |возрастное ограничение
+//- br
+//- input#age_limit(name='age_limit', type='text' value=`${film.age_limit}`)
+//- br
+//- |сюжет
+//- br
+//- input#plot(name='plot', type='text' value=`${film.plot}`)
+//- br
+//- |дата релиза в мире
+//- br
+//- input#release_date(name='release_date', type='text' value=`${film.release_date}`)
+//- br
+//- |дата релиза в Бел
+//- br
+//- input#release_bel(name='release_bel', type='text' value=`${film.release_bel}`)
+//- br
+//- |дата релиза в Росс
+//- br
+//- input#release_rus(name='release_rus', type='text' value=`${film.release_rus}`)
+//- br
+//- |в ролях
+//- br
+//- input#in_roles(name='in_roles', type='text' value=`${film.in_roles}`)
+//- br
+//- |режиссер
+//- br
+//- input#director(name='director', type='text' value=`${film.director}`)
+//- br
+//- |превью
+//- br
+//- img(src=`/images/films/${film.preview_path}`)
+//- br
+//- input#file(name='file', type='file')
+//- br
+//- button(onclick='updateFilm()')
+//-     |update info
