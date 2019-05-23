@@ -11,7 +11,7 @@ class VideosService extends CrudService {
     }
     async bindVideo(id, filmId) {
         const videoBeforeUpdate = await super.read(id);
-        const film = await this.filmsRepository.findById(filmId, {raw: true});
+        const film = await this.filmsRepository.findByPk(filmId, {raw: true});
 
         if(!videoBeforeUpdate || !film) {
             this.errors.notFound;

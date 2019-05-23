@@ -47,7 +47,7 @@ class CrudService {
 			throw this.errors.invalidId;
 		}
 
-		const item = await this.repository.findById(id, { raw: true });
+		const item = await this.repository.findByPk(id);
 
 		if (!item) {
 			throw this.errors.notFound;
@@ -55,6 +55,7 @@ class CrudService {
 
 		return item;
 	}
+
 
 	async create(data) {
 		const item = await this.repository.create(data);
@@ -75,7 +76,7 @@ class CrudService {
 		return await this.repository.destroy({ where: { id } });
 	}
 
-	
+
 }
 
 module.exports = CrudService;

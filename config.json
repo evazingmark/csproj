@@ -1,0 +1,17 @@
+{
+	"db": {
+		"host": "127.0.0.1",
+		"name": "kinostrelka",
+		"user": "root",
+		"password": "root"
+	},
+	"cookie": {
+		"key": "secret key",
+		"auth": "__auth_id"
+	},
+	"uri" : "http://localhost:3000/",
+	"vk": {
+		"key": "6486058",
+		"secret": "VnbyfDpwhDSFFSSXFvtX"
+	}
+}

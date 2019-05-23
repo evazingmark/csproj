@@ -7,7 +7,7 @@ class CommentsService extends CrudService {
         this.filmsRepository = filmsRepository;
     }
     async getFilmComments(filmId){
-        const film = await this.filmsRepository.findById(filmId);
+        const film = await this.filmsRepository.findByPk(filmId);
 
         if(!film) {
             this.errors.notFound;
@@ -20,7 +20,7 @@ class CommentsService extends CrudService {
             ]
 		});
     }
-   
+
 }
 
 module.exports = CommentsService;

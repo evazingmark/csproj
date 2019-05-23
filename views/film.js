@@ -59,7 +59,7 @@ function getDate(dateStr) {
     let date = new Date(dateStr);
     var options = { year:"numeric", month:"numeric", day:"numeric", hour:"2-digit", minute:"2-digit" };
     return date.toLocaleDateString('en-US', options);
-} 
+}
 
 function updateFilm (){
     // body = {
@@ -94,6 +94,7 @@ function updateFilm (){
         dataType : "json",
         data: formData,
         success: function(data){
+            // noinspection JSAnnotator
             $('#filmName') = data.name;
             console.log(data);
         }
